@@ -187,5 +187,7 @@ both automated and user-controllable options to achieve the desired focus, and a
 responding to changes in the environment to maintain image quality.
 
 [Complete device setup](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Device%20setup/Complete%20device%20setup.jpg)
+
 [Step by step implementation guid to get the result]([https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Device%20setup/Complete%20device%20setup.jpg](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Step%20by%20Step%20to%20implementation.pdf))
+
 [Python script](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Autofocus.py)
