@@ -191,3 +191,5 @@ responding to changes in the environment to maintain image quality.
 [Step by step implementation guid to get the result](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Step%20by%20Step%20to%20implementation.pdf)
 
 [Python script](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Autofocus.py)
+
+[mountable items - 3D CAD](https://github.com/ETCE-LAB/rpi-camera-af/tree/main/mountable%20items%20-%203D%20CAD)
