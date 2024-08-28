@@ -220,3 +220,17 @@ hardware components:
 7. Power Supply: 5V, 2.5-3A for Raspberry Pi.
 8. Micro HDMI cable
 9. Servo Motor: Feetech FS90R 360° Cont
+
+Componennt instalation instruction:
+
+1. Mount the image censor on the PCB-Mount [Image]() [CAD file]()
+2. Month the ring gear on lens, using double side tape [Image]() [CAD file]()
+3. attach the PCB-mount to the Raspberry-mount [Image]() [CAD file]()
+4. Mount the raspberry on the Raspberry-mount [Image]()
+5. Connect the camera to the Camera-connector on the board [Image]()
+6. Mount the lens on the camera [Image]()
+7. Add the case extention to on the Raspbery mount [Image]() [CAD file]()
+8. Mount the Sevo- fs-90r to the front-case [Image]() [CAD file]()
+9. Connect the jumper wire to the desire GPIO pins [Image]()
+10. Mount the Motor gear [Image]() [CAD file]()
+11. Fix the front case lid, and tie with Cable tie-wrap [Image]()
