@@ -193,3 +193,30 @@ responding to changes in the environment to maintain image quality.
 [Python script](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Autofocus.py)
 
 [mountable items - 3D CAD](https://github.com/ETCE-LAB/rpi-camera-af/tree/main/mountable%20items%20-%203D%20CAD)
+
+Ensure you have all the necessary tools and components listed before starting the assembly.
+Tools Required for Assembly : 
+before beginning, gather the following tools:
+
+1. Phillips Screwdriver
+2. Flathead Screwdriver
+3. Pliers
+4. Wire Cutter/Stripper
+5. double sided tape
+
+hardware components:
+
+1. Raspberry Pi 3: Main controller of the camera.
+2. Micro SD Card (32 GB): For Raspberry Pi OS and software.
+3. 3D-Printed Parts: Listed below with corresponding CAD files.
+   1. [Front frame](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/back-frame.stl)
+   2. [Front Cover](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/Front-Cover-with-servo-mount.stl)
+   3. [Back Frame](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/back-frame.stl)
+   4. [PCB Mount](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/pcb-mount.stl)
+   5. [servo gear Modul](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/servo-gear-13T-thicker-longer.stl)
+   6. [Lens Gear Modul](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/Lens-Gear-modul-1.2-30T-30mm-outer-diam-extruded.stl)
+5. Jumper Cables: Male to Male and Male to Female.
+6. Camera Module:HQ camera v1.0 and Arducam lenses 120 degree with manual focus 
+7. Power Supply: 5V, 2.5-3A for Raspberry Pi.
+8. Micro HDMI cable
+9. Servo Motor: Feetech FS90R 360° Cont
