@@ -200,11 +200,10 @@ Ensure you have all the necessary tools and components listed before starting th
 
 before beginning, gather the following tools:
 
-1. Phillips Screwdriver
-2. Flathead Screwdriver
-3. Pliers
-4. Wire Cutter/Stripper
-5. double sided tape
+1. iFx micro Screwdriver
+2. Pliers
+3. Wire Cutter/Stripper
+4. double sided tape
 
 **hardware components:**
 
