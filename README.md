@@ -196,7 +196,8 @@ responding to changes in the environment to maintain image quality.
 
 Ensure you have all the necessary tools and components listed before starting the assembly.
 
-"**Tools Required for Assembly :**"
+**Tools Required for Assembly :**
+
 before beginning, gather the following tools:
 
 1. Phillips Screwdriver
@@ -205,7 +206,7 @@ before beginning, gather the following tools:
 4. Wire Cutter/Stripper
 5. double sided tape
 
-"**hardware components:**"
+**hardware components:**
 
 1. Raspberry Pi 3: Main controller of the camera.
 2. Micro SD Card (32 GB): For Raspberry Pi OS and software.
@@ -222,7 +223,7 @@ before beginning, gather the following tools:
 8. Micro HDMI cable
 9. Servo Motor: Feetech FS90R 360° Cont
 
-"**Componennt instalation instruction:**"
+**Componennt instalation instruction:**
 
 1. Mount the image censor on the PCB-Mount [Image](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Device%20setup/Mount%20the%20image%20censor%20on%20the%20PCB-Mount.jpg) [CAD file](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/pcb-mount.stl)
 2. Month the ring gear on lens, using double side tape [Image](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Device%20setup/Month%20the%20ring%20gear%20on%20lens%2C%20using%20double%20side%20tape.jpg) [CAD file](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/Lens-Gear-modul-1.2-30T-30mm-outer-diam-extruded.stl)
