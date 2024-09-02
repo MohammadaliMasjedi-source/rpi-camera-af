@@ -188,7 +188,7 @@ responding to changes in the environment to maintain image quality.
 
 [Complete device setup](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Device%20setup/Complete%20device%20setup.jpg)
 
-[Step by step implementation guid to get the result](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Step%20by%20Step%20to%20implementation.pdf)
+[Step by step implementation guide to get the result](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Step%20by%20Step%20to%20implementation.pdf)
 
 [Python script](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Autofocus.py)
 
@@ -200,12 +200,12 @@ Ensure you have all the necessary tools and components listed before starting th
 
 before beginning, gather the following tools:
 
-1. iFx micro Screwdriver
+1. IFix micro Screwdriver
 2. Pliers
 3. Wire Cutter/Stripper
-4. double sided tape
+4. Double-sided tape
 
-**hardware components:**
+**Hardware components:**
 
 1. Raspberry Pi 3: Main controller of the camera.
 2. Micro SD Card (32 GB): For Raspberry Pi OS and software.
@@ -214,7 +214,7 @@ before beginning, gather the following tools:
    2. [Front Cover](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/Front-Cover-with-servo-mount.stl)
    3. [Back Frame](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/back-frame.stl)
    4. [PCB Mount](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/pcb-mount.stl)
-   5. [servo gear Modul](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/servo-gear-13T-thicker-longer.stl)
+   5. [Servo Gear Module](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/servo-gear-13T-thicker-longer.stl)
    6. [Lens Gear Modul](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/Lens-Gear-modul-1.2-30T-30mm-outer-diam-extruded.stl)
 5. Jumper Cables: Male to Male and Male to Female.
 6. Camera Module:HQ camera v1.0 and Arducam lenses 120 degree with manual focus 
@@ -222,7 +222,7 @@ before beginning, gather the following tools:
 8. Micro HDMI cable
 9. Servo Motor: Feetech FS90R 360° Cont
 
-**Componennt instalation instruction:**
+**Vomponennt instalation instruction:**
 
 1. Mount the image censor on the PCB-Mount [Image](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Device%20setup/Mount%20the%20image%20censor%20on%20the%20PCB-Mount.jpg) [CAD file](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/pcb-mount.stl)
 2. Month the ring gear on lens, using double side tape [Image](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/Device%20setup/Month%20the%20ring%20gear%20on%20lens%2C%20using%20double%20side%20tape.jpg) [CAD file](https://github.com/ETCE-LAB/rpi-camera-af/blob/main/mountable%20items%20-%203D%20CAD/Lens-Gear-modul-1.2-30T-30mm-outer-diam-extruded.stl)
