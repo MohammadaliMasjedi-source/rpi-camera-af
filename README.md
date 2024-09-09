@@ -1,5 +1,5 @@
 <img src="https://www.presse.tu-clausthal.de/fileadmin/Presse/images/Corporate_Design/Logo/Logo_TUC_en_CMYK.jpg" width="300">
-# RPI-Camera-AF
+## RPI-Camera-AF
 Auto Focus Camera using Raspberry Pi, Lens, and a Servo Motor
 
 ## Abstract
