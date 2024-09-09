@@ -1,6 +1,21 @@
 <img src="https://www.presse.tu-clausthal.de/fileadmin/Presse/images/Corporate_Design/Logo/Logo_TUC_en_CMYK.jpg" width="300">
-## RPI-Camera-AF
-Auto Focus Camera using Raspberry Pi, Lens, and a Servo Motor
+# RPI-Camera-AF
+## Auto Focus Camera using Raspberry Pi, Lens, and a Servo Motor
+
+### Overview
+The RPI-Camera-AF project leverages the versatile Raspberry Pi platform to create a modular camera system capable of automatic focusing. This innovative setup utilizes a combination of a high-quality lens, a precise servo motor, and custom 3D-printed components, orchestrated by the powerful Raspberry Pi 4 to enhance image clarity dynamically.
+
+### Project Goal
+The primary objective of this project is to develop a reliable autofocus mechanism that can adapt in real-time to different focusing needs. This system is designed to be especially beneficial in environments where focus accuracy is critical, such as in wildlife photography, surveillance, or any dynamic shooting scenario.
+
+### Key Features
+- **Dynamic Autofocus**: Utilizes advanced algorithms to adjust focus based on real-time image analysis.
+- **Modular Design**: Components can be easily customized or replaced to suit different use cases or improve functionality.
+- **Hands-On Learning**: Provides an educational platform for understanding and experimenting with image processing, hardware interaction, and software control.
+
+Stay tuned for more updates as we continue to enhance system capabilities and explore new features!
+
+
 
 ## Abstract
 This project aimed to design and develop a modular camera platform using a Raspberry Pi, integrating various components such as a camera sensor, a wide lens, an FS90R servo motor, and 3D-printed gears. The primary objective was to create an autofocus mechanism that dynamically adjusts focus by calculating the Laplacian variance of live frame previews to achieve optimal sharpness. The methodology involved assembling the hardware components, programming the Raspberry Pi to control the servo motor based on image sharpness metrics, and enabling real-time focus adjustments. Initial tests demonstrated that while the system could effectively identify and adjust to changes in frame sharpness, limitations related to the precision of the lens's focal point, the quality of the sensor, and the accuracy of the servo motor control were identified. These factors affected the overall efficacy of the autofocus system. The project concluded that while the prototype showed potential, enhancements in hardware precision and control algorithms are necessary for practical applications. Future work will focus on refining these elements to improve system reliability and performance.
