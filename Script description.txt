@@ -1,18 +1,17 @@
 Script Description
-This code sets up a Raspberry Pi to work with its camera and manage tasks related to image
-handling and controlling physical components. Here's what each part does:
-1. time: Used for tasks that involve timing, like delays.
-2. cv2 (OpenCV): Helps the Raspberry Pi work with images and video.
-3. picamera2: A special tool for using the Raspberry Pi's camera.
-4. RPi.GPIO: Allows the Raspberry Pi to control external devices connected to its pins.
-5. threading: Helps run different tasks at the same time without interference.
-6. queue: Used for organizing data that the Raspberry Pi needs to handle in order.
-7. numpy: Helps with calculations and organizing data, especially for images.
-8. collections.deque: Helps manage data that changes frequently.
-9. datetime: Used for anything that needs the date and time, like adding timestamps to
-photos.
-This setup is mainly for projects that need to capture and process images, manage timing,
-and interact with devices connected to the Raspberry Pi.
+
+This code sets up a Raspberry Pi to work with its camera and manage tasks related to image handling and controlling physical components. Here's what each part does:
+
+time: Used for tasks that involve timing, such as delays.
+cv2 (OpenCV): Helps the Raspberry Pi work with images and videos.
+picamera2: A specialized tool for using the Raspberry Pi's camera.
+RPi.GPIO: Allows the Raspberry Pi to control external devices connected to its pins.
+threading: Helps run different tasks simultaneously without interference.
+queue: Used for organizing data that the Raspberry Pi needs to handle sequentially.
+numpy: Aids with calculations and organizing data, especially for images.
+collections.deque: Helps manage data that changes frequently.
+datetime: Used for anything that requires the date and time, such as adding timestamps to photos.
+This setup is mainly for projects that need to capture and process images, manage timing, and interact with devices connected to the Raspberry Pi.
 
 import time
 import cv2
@@ -24,11 +23,7 @@ import numpy
 from collections import deque
 from datetime import datetime
 
-This class is designed to track the variance of the last 30 numerical values it receives. It
-updates continuously as new values come in, always keeping the variance calculation
-relevant to the most recent 30 values. This is useful for monitoring changes in data over time,
-particularly where it's important to understand how much the values are varying within a
-fixed window size.
+This class is designed to track the variance of the last 30 numerical values it receives. It continuously updates as new values come in, ensuring that the variance calculation remains relevant to the most recent 30 values. This feature is useful for monitoring changes in data over time, particularly when it's important to understand how much the values vary within a fixed window size.
 
 class FrameVarianceMonitor:
 def __init__(self, window_size):
@@ -58,22 +53,19 @@ window_size = 30
 monitor = FrameVarianceMonitor(window_size)
 
 
-This code snippet sets up a Raspberry Pi to control a servo motor and start a camera for
-video capture:
+This code snippet sets up a Raspberry Pi to control a servo motor and start a camera for video capture:
+
 Servo Motor Setup:
-• servo_pin = 11: Assigns pin 11 to control the servo motor.
-• GPIO.setmode(GPIO.BOARD): Configures the GPIO pins by physical locations on the
-board.
-• GPIO.setup(servo_pin, GPIO.OUT): Sets the servo pin as an output.
-• pwm = GPIO.PWM(servo_pin, 50): Initializes PWM (Pulse Width Modulation) on the
-servo pin at 50 Hz, used to control the servo's angle.
-• pwm.start(0): Begins sending a PWM signal with a duty cycle of 0%, positioning the
-servo at its starting position.
+
+servo_pin = 11: Assigns pin 11 to control the servo motor.
+GPIO.setmode(GPIO.BOARD): Configures the GPIO pins by their physical locations on the board.
+GPIO.setup(servo_pin, GPIO.OUT): Sets the servo pin as an output.
+pwm = GPIO.PWM(servo_pin, 50): Initializes PWM (Pulse Width Modulation) on the servo pin at 50 Hz, used to control the servo's angle.
+pwm.start(0): Begins sending a PWM signal with a duty cycle of 0%, positioning the servo at its starting position.
 Camera Setup:
-• picam2 = Picamera2(): Creates a new instance of Picamera2, a tool for controlling the
-Raspberry Pi Camera Module.
-• video_config = picam2.create_video_configuration(main={"size": (480,360)}):
-Configures the camera to capture video at a resolution of 480x360 pixels.
+
+picam2 = Picamera2(): Creates a new instance of Picamera2, a tool for controlling the Raspberry Pi Camera Module.
+video_config = picam2.create_video_configuration(main={"size": (480,360)}): Configures the camera to capture video at a resolution of 480x360 pixels.
 
 
 size_tuple = video_config['main']['size']: Extracts the resolution as a tuple (480, 360).
@@ -98,40 +90,27 @@ size_str = str(size_tuple)
 picam2.configure(video_config)
 picam2.start()
 
-
-This function “is_blurred”, checks if an image is blurred by converting it to grayscale and
-calculating the variance of the Laplacian (a measure of the image's second derivatives). A
-low variance indicates less edge detail, suggesting the image might be blurred. The function
-returns the variance as an integer, which can be used to determine the level of blurriness.
+This function, is_blurred, checks if an image is blurred by converting it to grayscale and calculating the variance of the Laplacian, which measures the image's second derivatives. A low variance indicates less edge detail, suggesting the image might be blurred. The function returns the variance as an integer, which can be used to determine the level of blurriness.
 
 def is_blurred(img):
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 lap_var = cv2.Laplacian(gray, cv2.CV_64F).var()
 return int(lap_var)
 
-
-The function compare examines two numbers, a and b, and determines if they are equal, if
-one is greater, or if one is less. It uses a very small number called tolerance to decide if the
-numbers are close enough to be considered equal, accommodating minor differences that
-often occur with decimal numbers in computing. This small tolerance is used to enhance
-precision in comparisons, especially important in situations involving very precise
-measurements or calculations. If a and b are within this tolerance, the function says they are
-"equal." If not, it checks if a is greater than b to say "greater," or else it says "less."
+The function compare examines two numbers, a and b, and determines if they are equal, if one is greater, or if one is less. It uses a very small number called tolerance to decide if the numbers are close enough to be considered equal, accommodating minor differences that often occur with decimal numbers in computing. This small tolerance is used to enhance precision in comparisons, especially important in situations involving very precise measurements or calculations. If a and b are within this tolerance, the function considers them "equal." If not, it checks if a is greater than b to determine if it should return "greater," or else it returns "less."
 
 def compare (a,b,tol=1e-15):
 if abs(a-b)<tol:
 return "equal"
 return "greater" if a>b else "less"
 
-The provided code consists of two functions, rightmove and leftmove, which control a servo motor's
-movement to the right and left, respectively, using PWM (Pulse Width Modulation):
-• rightmove(): This function sets the PWM duty cycle to 12 to move the servo to the right, holds
-this position for 0.02 seconds, then stops the PWM signal (sets it to 0) and waits for 0.3
-seconds to stabilize the servo in its new position.
-• leftmove(): Similarly, this function sets the PWM duty cycle to 1 to move the servo to the left,
-holds it for 0.02 seconds, then stops the PWM and waits for 0.3 seconds.
-These functions are typically used in robotic applications where precise, timed movements of a servo
-motor are required.
+The provided code consists of two functions, rightmove and leftmove, which control a servo motor's movement to the right and left, respectively, using PWM (Pulse Width Modulation):
+
+rightmove(): This function sets the PWM duty cycle to 12 to move the servo to the right. It holds this position for 0.02 seconds, then stops the PWM signal (sets it to 0) and waits for 0.3 seconds to stabilize the servo in its new position.
+
+leftmove(): Similarly, this function sets the PWM duty cycle to 1 to move the servo to the left, holds it for 0.02 seconds, then stops the PWM and waits for 0.3 seconds.
+
+These functions are typically used in robotic applications where precise, timed movements of a servo motor are required.
 
 def rightmove():
 pwm.ChangeDutyCycle(12)
@@ -145,25 +124,13 @@ time.sleep(0.02)
 pwm.ChangeDutyCycle(0)
 time.sleep(0.3)
 
-The script provided contains two functions, frameshow and show, which work together to
-display a live video stream from a camera using OpenCV:
+The script provided contains two functions, frameshow and show, which work together to display a live video stream from a camera using OpenCV:
 
-  •frameshow(picam2): This function takes a picam2 camera object as an argument. It
-captures an image array from the camera. If no frame is captured (frame is None), it
-returns True, indicating an issue, but continues. Otherwise, it converts the color
-format of the frame from RGB to BGR (which is the color format OpenCV uses for
-images). It then creates and displays the frame in a fullscreen window named 'Frame'.
-If the user presses the 'q' key, the function returns False, signaling to stop the video
-stream.
+frameshow(picam2): This function takes a picam2 camera object as an argument. It captures an image array from the camera. If no frame is captured (frame is None), it returns True, indicating an issue, but continues. Otherwise, it converts the color format of the frame from RGB to BGR (which is the color format OpenCV uses for images). It then creates and displays the frame in a fullscreen window named 'Frame'. If the user presses the 'q' key, the function returns False, signaling to stop the video stream.
 
-  •show(): This is a loop function that continuously calls frameshow. As long as
-frameshow returns True, it keeps running, showing new frames from the camera. If
-Page 12 of 19frameshow returns False (when the 'q' key is pressed), the loop breaks, effectively
-ending the video stream display.
-This setup is typically used in applications where live video feedback is required, such as in
-security systems, monitoring systems, or interactive projects. The use of a loop in show
-ensures continuous frame updates, and the condition inside allows for a graceful shutdown
-on a key press.
+show(): This is a loop function that continuously calls frameshow. As long as frameshow returns True, it keeps running, showing new frames from the camera. If frameshow returns False (when the 'q' key is pressed), the loop breaks, effectively ending the video stream display.
+
+This setup is typically used in applications where live video feedback is required, such as in security systems, monitoring systems, or interactive projects. The use of a loop in show ensures continuous frame updates, and the condition inside allows for a graceful shutdown on a key press.
 
 def frameshow(picam2):
 frame = picam2.capture_array()
@@ -184,43 +151,24 @@ while True:
 if not frameshow(picam2):
 break
 
-The function takepic(x, y) takes two parameters, x and y, and uses them to capture a picture
-with a Raspberry Pi camera, tagging it with metadata in the filename. It first captures the
-current date and time, formats it as "YYYYMMDD_HHMMSS", and then constructs a filename
-that includes this timestamp, the variance (x), and the resolution (y). The photo is saved with
-this filename as a JPEG file. If you need to capture a video instead of a picture, you could
-modify the function to use the camera's video recording capabilities in place of the image
-capture command.
+The function takepic(x, y) takes two parameters, x and y, and uses them to capture a picture with a Raspberry Pi camera, tagging it with metadata in the filename. It first captures the current date and time, formats it as "YYYYMMDD_HHMMSS", and then constructs a filename that includes this timestamp, the variance (x), and the resolution (y). The photo is saved with this filename as a JPEG file. If you need to capture a video instead of a picture, you could modify the function to use the camera's video recording capabilities in place of the image capture command.
 
 def takepic(x,y):
 now = datetime.now()
 filename = now.strftime("%Y%m%d_%H%M%S")
 picam2.capture_file(f"{filename}_variance_is_{x}_resolution_is_{y}.jpg")
 
-The code controls a camera lens to optimize the focus by adjusting its rotation and
-monitoring the variance in the video frame in real time. Here’s how it works:
-1. Direction Setting and Monitoring: The lens can rotate left or right, a direction you
-can set in the code. As the lens rotates, the code calculates the frame's variance to
-determine image sharpness.
+The code controls a camera lens to optimize the focus by adjusting its rotation and monitoring the variance in the video frame in real time. Here’s how it works:
 
-2. Adjusting Rotation Based on Variance: If the variance (sharpness) increases, the
-rotation direction is correct. If it decreases, indicating a loss in focus, the code
-reverses the rotation direction to find a better focus.
+Direction Setting and Monitoring: The lens can rotate left or right, a direction you can set in the code. As the lens rotates, the code calculates the frame's variance to determine image sharpness.
 
-3. Handling Over-rotation: Since the motor control isn't precise, it might overshoot the
-point of maximum variance. If this happens, the lens may oscillate around this
-optimal focus point. The code is designed to detect if the motor has changed
-direction five times consecutively, interpreting this as having achieved the best
-possible focus within operational limits, and then stops the motor.
+Adjusting Rotation Based on Variance: If the variance (sharpness) increases, the rotation direction is correct. If it decreases, indicating a loss in focus, the code reverses the rotation direction to find a better focus.
 
-4. Continuous Monitoring and Re-adjustment: Even after stopping, the system
-continues to monitor the variance. If it changes by 10% (either increases or
-decreases), this signals a significant shift in focus quality, prompting the system to
-restart the process of seeking the area with the highest variance to adjust the focus
-again.
+Handling Over-rotation: Since the motor control isn't precise, it might overshoot the point of maximum variance. If this happens, the lens may oscillate around this optimal focus point. The code is designed to detect if the motor has changed direction five times consecutively, interpreting this as having achieved the best possible focus within operational limits, and then stops the motor.
 
-This setup is particularly useful for applications where continuous and automatic focus
-adjustment is necessary, such as in surveillance or automated photography environments.
+Continuous Monitoring and Re-adjustment: Even after stopping, the system continues to monitor the variance. If it changes by 10% (either increases or decreases), this signals a significant shift in focus quality, prompting the system to restart the process of seeking the area with the highest variance to adjust the focus again.
+
+This setup is particularly useful for applications where continuous and automatic focus adjustment is necessary, such as in surveillance or automated photography environments.
 
 def moarso():
 initial_var=is_blurred(picam2.capture_array())
@@ -296,43 +244,24 @@ picam2.stop()
 picam2.close()
 cv2.destroyAllWindows()
 
-The provided code snippet initiates two separate threads using Python's threading module,
-aimed at handling autofocus and live video display simultaneously:
+The provided code snippet initiates two separate threads using Python's threading module, aimed at handling autofocus and live video display simultaneously:
 
-1. Initialization of Threads:
-  o focus_thread = threading.Thread(target=moarso): This thread is dedicated to
-the autofocus function, which presumably adjusts the focus of a camera lens.
-The target function moarso suggests a method for calculating and adjusting
-focus automatically.
-  o frameshow_thread = threading.Thread(target=show): This thread is
-responsible for displaying the live video feed from the camera. The target
-function show handles the continual capture and display of video frames.
-2. Starting the Threads:
-  o focus_thread.start(): Activates the autofocus thread, allowing it to run
-independently.
-  o frameshow_thread.start(): Starts the live video display thread simultaneously.
+Initialization of Threads:
+
+focus_thread = threading.Thread(target=moarso): This thread is dedicated to the autofocus function, which presumably adjusts the focus of a camera lens. The target function moarso suggests a method for calculating and adjusting focus automatically.
+frameshow_thread = threading.Thread(target=show): This thread is responsible for displaying the live video feed from the camera. The target function show handles the continual capture and display of video frames.
+Starting the Threads:
+
+focus_thread.start(): Activates the autofocus thread, allowing it to run independently.
+frameshow_thread.start(): Starts the live video display thread simultaneously.
 Benefits of Using Threading in this Context:
 
-•Uninterrupted Live View: By separating the video display and autofocus calculations
-into different threads, the live video can remain smooth and uninterrupted. This is
-because the demanding autofocus calculations are being handled in parallel, rather
-than sequentially which could block the video feed and cause delays or stuttering.
-Improved Responsiveness: Each thread operates independently, so the user
-interface, likely the video feed, remains responsive and fluid even as complex
-autofocus adjustments are being made in the background.
+Uninterrupted Live View: By separating the video display and autofocus calculations into different threads, the live video can remain smooth and uninterrupted. This is because the demanding autofocus calculations are being handled in parallel, rather than sequentially which could block the video feed and cause delays or stuttering.
 
-• Efficiency: Threading can make better use of the processor's capabilities by
-distributing tasks across multiple cores where available, speeding up the overall
-process of autofocus while maintaining a real-time video output.
-Synchronization and Flexibility: Separate threads allow for more flexible program
-design, where different tasks can be paused, stopped, or prioritized without affecting
-others. This is particularly useful in dynamic environments like live video feeds where
-conditions change rapidly.
+Improved Responsiveness: Each thread operates independently, so the user interface, likely the video feed, remains responsive and fluid even as complex autofocus adjustments are being made in the background.
 
-• Overall, using threading in this manner optimizes the camera's functionality for scenarios
-like surveillance, live streaming, or any application requiring both continuous video capture
-and dynamic focus adjustment.
-focuse_thread = threading.Thread(target=moarso)
-frameshow_thread = threading.Thread(target=show)
-focuse_thread.start()
-frameshow_thread.start()
+Efficiency: Threading can make better use of the processor's capabilities by distributing tasks across multiple cores where available, speeding up the overall process of autofocus while maintaining real-time video output.
+
+Synchronization and Flexibility: Separate threads allow for more flexible program design, where different tasks can be paused, stopped, or prioritized without affecting others. This is particularly useful in dynamic environments like live video feeds where conditions change rapidly.
+
+Overall, using threading in this manner optimizes the camera's functionality for scenarios like surveillance, live streaming, or any application requiring both continuous video capture and dynamic focus adjustment.
