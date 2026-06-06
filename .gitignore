@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+*.swp
+
+# Local tooling
+.claude/
+
+# Captured frames / scratch output (keep curated sample images only)
+captures/
+*.tmp

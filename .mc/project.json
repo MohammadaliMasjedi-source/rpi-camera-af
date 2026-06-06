@@ -1,0 +1,59 @@
+{
+  "schema": "mc-project/v1",
+  "id": "rpi-camera-af",
+  "name": "RPi Camera Autofocus",
+  "emoji": "📷",
+  "category": "Hardware · Computer Vision",
+  "priority": "low",
+  "private": false,
+  "status": "shipped",
+  "tagline": "Camera autofocus on Raspberry Pi 4 driving an FS90R servo - Python focus algorithms, 3D-printed mounts, and a step-by-step build guide.",
+
+  "progress": 100,
+  "currentPhase": "p3",
+  "nextAction": "Archive / maintenance only - the build is complete and documented.",
+
+  "links": {
+    "github": "https://github.com/MohammadaliMasjedi-source/rpi-camera-af",
+    "dashboard": "dashboard/index.html",
+    "board": null,
+    "obsidian": null,
+    "docs": "PROJECT.md"
+  },
+
+  "phases": [
+    {
+      "id": "p1", "title": "Mechanics + electronics", "progress": 100, "status": "done",
+      "subphases": [
+        { "title": "3D-printed lens gear, servo mount, frames", "done": true },
+        { "title": "Wire FS90R servo to RPi4 GPIO", "done": true },
+        { "title": "Mount camera + image sensor", "done": true }
+      ]
+    },
+    {
+      "id": "p2", "title": "Focus algorithm", "progress": 100, "status": "done",
+      "subphases": [
+        { "title": "Sharpness metric (variance / heatmap)", "done": true },
+        { "title": "Servo sweep + peak-focus search", "done": true }
+      ]
+    },
+    {
+      "id": "p3", "title": "Documentation", "progress": 100, "status": "done",
+      "subphases": [
+        { "title": "Step-by-step build guide (PDF + photos)", "done": true },
+        { "title": "README + script descriptions", "done": true }
+      ]
+    }
+  ],
+
+  "swot": {
+    "strengths": ["Complete, reproducible build", "Documented end to end", "Low-cost off-the-shelf parts"],
+    "weaknesses": ["FS90R is continuous-rotation - open-loop positioning", "Single lens/camera tested"],
+    "opportunities": ["Closed-loop with an encoder", "Port focus metric to other rigs"],
+    "threats": ["Dependent on specific RPi camera stack"]
+  },
+
+  "decisions": [
+    { "date": "2024-09-09", "decision": "Use a variance/heatmap sharpness metric for focus", "why": "Simple, fast, robust on-device", "rejected": ["FFT-based sharpness"] }
+  ]
+}
