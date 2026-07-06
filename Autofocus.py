@@ -15,7 +15,7 @@ class FrameVarianceMonitor:
 		self.variances = deque(maxlen=window_size)	# Fixed-size deque to store the latest variances
 		self.current_max = float('-inf')		# Initialize the maximum variance found as negative infinity
 	# Add a variance value to the deque and update the maximum variance if necessary.
-   	def add_variance(self, variance):
+	def add_variance(self, variance):
 		if variance>11:
 			self.variances.append(variance)
 		if len(self.variances) == self.window_size:	# When window is full
