@@ -48,3 +48,20 @@ method and a heatmap method. Mechanical parts are parametric STLs printable on a
 
 ## Build it
 See `docs/BUILD.md`, the photos in `Device setup/`, and `Step by Step to implementation.pdf`.
+
+## ✅ Definition of Done (certified 2026-07-14)
+**DONE** — a *documented, working hardware prototype*. "Done" here means the rig can be rebuilt
+from this repo alone:
+- **Autofocus code present + syntax-valid** — `Autofocus.py` uses Laplacian-variance sharpness
+  (`is_blurred()` → `cv2.Laplacian(...).var()`), FS90R servo control (`rightmove()` / `leftmove()`
+  via PWM duty cycle), and a threaded live-preview + peak-focus sweep. Plus `click_variance.py`
+  (variance) and `heatmapmethod.py` (heatmap) focus metrics. All three parse clean.
+- **Hardware fully documented** — all 7 CAD STLs in `mountable items - 3D CAD/`, every wiring/
+  assembly photo in `Device setup/`, and `docs/BUILD.md` + `Step by Step to implementation.pdf`
+  cover print → assemble → wire → run end to end.
+- **Limitations noted honestly** — FS90R is continuous-rotation ⇒ open-loop, no micro-adjustment;
+  single lens/camera tested; tied to the RPi PiCamera2 stack; the script needs real RPi4 + camera
+  + servo hardware to execute.
+
+*Note:* the README hyperlinks point at the upstream `ETCE-LAB` repo, but every file they reference
+also lives here, so this repo is self-contained and reproducible.
