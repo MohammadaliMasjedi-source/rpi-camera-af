@@ -4,10 +4,22 @@ A condensed index of the build. For the full walkthrough see
 `Step by Step to implementation.pdf` and the photos in `Device setup/`.
 
 ## 1. Print the parts (`mountable items - 3D CAD/`)
-- `Lens-Gear-modul-1.2-30T-30mm-outer-diam-extruded.stl` — gear that clamps to the lens focus ring
+- `Lens-Gear-modul-1.2-30T-30mm-outer-diam-extruded.stl` — gear attached to the lens focus ring
 - `servo-gear-13T-thicker-longer.stl` — gear on the FS90R servo
 - `Front-Cover-with-servo-mount.stl`, `front-frame.stl`, `back-frame.stl` — housing
 - `pcb-mount.stl` — image-sensor / PCB mount
+
+### Inspect the six meshes before printing
+
+Run `python3 examples/inspect_parts.py` from the repository root. It reads only the STL files; no slicer, camera, third-party Python packages or GPIO are needed. You can also pass one or more binary STL paths to check replacement parts. Example results:
+
+| Part | Triangles | Bounding-box span X × Y × Z (native units) |
+|---|---:|---|
+| Front frame | 1,368 | 89.00 × 60.00 × 16.00 |
+| Back frame | 1,908 | 89.00 × 60.00 × 14.00 |
+| Lens gear | 7,106 | 38.39 × 38.26 × 5.92 |
+
+The front and back frames share a footprint but have different depths. Use the table to spot an accidental file swap before slicing. STL does not store units: compare a known physical dimension against the slicer preview before choosing a scale. Spans follow the file axes and do not establish fit, print orientation, tolerances or mesh watertightness.
 
 ## 2. Assemble
 1. Mount the lens on the camera; mount the image sensor on the PCB mount.
@@ -26,12 +38,11 @@ Connect the FS90R servo signal to the GPIO pin shown in `Device setup/RPI used p
 ```bash
 python3 Autofocus.py
 ```
-The script sweeps the servo across the focus range, scores each frame's sharpness, and parks at the
-sharpest position.
+The controller compares captured frames and pulses the servo. The lens position is not measured by an encoder; the score is not proof that a particular subject is in focus.
 
 ## Focus metrics
 | Script | Method |
 |--------|--------|
-| `click_variance.py` | Pixel-intensity **variance** as the sharpness score |
-| `heatmapmethod.py`  | **Heatmap** based sharpness evaluation |
-| `Autofocus.py`      | Drives the servo sweep and selects peak focus |
+| `click_variance.py` | Reports grayscale Laplacian variance after masking a clicked region; no motor control |
+| `heatmapmethod.py`  | Shows smoothed squared Laplacian response; no motor control |
+| `Autofocus.py`      | Compares full-frame sharpness and drives the servo |
