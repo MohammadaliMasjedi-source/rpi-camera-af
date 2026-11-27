@@ -3,6 +3,18 @@
 # RPI-Camera-AF
 ## Auto Focus Camera using Raspberry Pi, Lens, and a Servo Motor
 
+### Try the focus idea without a camera
+
+Which looks sharper to a computer: one clean edge, or a row of alternating dark and light pixels? Run this from the repository root (Python 3, standard library only):
+
+```sh
+python3 examples/focus_scores.py
+```
+
+On the supplied synthetic rows, the scores are **0.00** (flat), **116.67** (soft edge), **3333.33** (sharp edge), and **40000.00** (alternating pattern). A high score means strong local changes; it does not establish that the lens is focused on your subject. Try doubling each value on the soft edge *without clipping*: what happens to the score?
+
+[Explore the example](examples/focus_scores.py). It takes second differences along a single row at interior positions. The [actual camera code](Autofocus.py) uses the variance of a 2-D OpenCV Laplacian on grayscale frames. The demo neither drives a servo nor calibrates thresholds for the rig. New to Python? The [Persian Byte of Python project](https://github.com/MohammadaliMasjedi-source/a-byte-of-python-fa) introduces the lists and loops used here.
+
 ### Overview
 The RPI-Camera-AF project leverages the versatile Raspberry Pi platform to create a modular camera system capable of automatic focusing. This innovative setup utilizes a combination of a high-quality lens, a precise servo motor, and custom 3D-printed components, orchestrated by the powerful Raspberry Pi 4 to enhance image clarity dynamically.
 
